@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <div class="menu">
+      <v-btn v-for="(item, idx) in 30" @click="pathTo(item)" :key="idx" small color="primary">{{ `JS第一${item}天` }}</v-btn>
+    </div>
+    <router-view></router-view>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from "./components/HelloWorld";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "App",
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  components: {
+    // HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
+  methods: {
+    pathTo(item) {
+      let toStr = "Day" + item;
+      console.log(toStr);
+      this.$router.push({ name: toStr });
+    },
+  },
+};
+</script>
+<style scoped>
+* {
+  /* border: 1px solid; */
+  box-sizing: border-box;
+}
+.menu {
+  display: flex;
+  overflow: auto;
+  height: 50px;
 }
 </style>
