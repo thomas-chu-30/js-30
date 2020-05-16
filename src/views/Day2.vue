@@ -57,8 +57,6 @@ export default {
       this.seconed = second;
       this.minute = minute;
       this.hour = hour;
-
-      // console.log("lll");
     }
   }
 };
@@ -102,10 +100,12 @@ export default {
 .sec,
 .min,
 .hr {
-  width: 10px;
+  width: 5px;
   /* height: 10px; */
   /* height: 45%; */
-  border: 1px solid;
+  /* border: 1px solid; */
+  box-shadow: 0 0 5px gray;
+  background-color: black;
   position: absolute;
   left: calc(50%);
   transform: translateX(-50%) scaleY(0.8);
