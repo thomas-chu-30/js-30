@@ -7,11 +7,11 @@
       <div class="hr"></div>
     </div>
     <div class="clock-number">
-      <v-btn color="primary">{{hour}}</v-btn>
+      <v-btn color="primary">{{ hour }}</v-btn>
       <span>:</span>
-      <v-btn color="primary">{{minute}}</v-btn>
+      <v-btn color="primary">{{ minute }}</v-btn>
       <span>:</span>
-      <v-btn color="primary">{{seconed}}</v-btn>
+      <v-btn color="primary">{{ seconed }}</v-btn>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     return {
       seconed: 0,
       minute: 0,
-      hour: 0
+      hour: 0,
     };
   },
   mounted() {
@@ -57,8 +57,8 @@ export default {
       this.seconed = second;
       this.minute = minute;
       this.hour = hour;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

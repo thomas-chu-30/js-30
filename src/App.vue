@@ -1,9 +1,13 @@
 <template>
   <v-app>
-    <div class="menu">
-      <v-btn v-for="(item, idx) in 30" @click="pathTo(item)" :key="idx" small color="primary">{{ `JS第一${item}天` }}</v-btn>
+    <div class="layout">
+      <div class="menu">
+        <div v-for="(item, idx) in 30" @click="pathTo(item)" class="item-day" :key="idx">{{ `JS第一${item}天` }}</div>
+      </div>
+      <div style="width:100%">
+        <router-view></router-view>
+      </div>
     </div>
-    <router-view></router-view>
   </v-app>
 </template>
 
@@ -31,12 +35,24 @@ export default {
 </script>
 <style scoped>
 * {
-  /* border: 1px solid; */
   box-sizing: border-box;
 }
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 .menu {
-  display: flex;
+  width: 300px;
+  height: 100vh;
   overflow: auto;
-  height: 50px;
+}
+.item-day {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #eee;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  text-align: center;
 }
 </style>
