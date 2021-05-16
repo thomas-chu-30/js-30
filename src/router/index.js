@@ -13,12 +13,22 @@ const routes = [
   {
     path: "/Day1",
     name: "Day1",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Day1.vue"),
+    component: () => import("../views/Day1.vue"),
   },
   {
     path: "/Day2",
     name: "Day2",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Day2.vue"),
+    component: () => import("../views/Day2.vue"),
+  },
+  {
+    path: "/Day3",
+    name: "Day3",
+    component: () => import("../views/Day3.vue"),
+  },
+  {
+    path: "/Day4",
+    name: "Day4",
+    component: () => import("../views/Day4.vue"),
   },
 ];
 
