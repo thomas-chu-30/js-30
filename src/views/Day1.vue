@@ -1,91 +1,100 @@
-<template>
-  <div class="day1">
-    <div :class="['box', { active: actCurr == item.small }]" :data-key="item.key" v-for="item in drum" :key="item.key" @click="playSound(item)">
-      <h1>{{ item.key }}</h1>
-      <p>{{ item.label }}</p>
-    </div>
-    <audio v-for="(item, idx) in sound" :key="idx" data-key="65" id="test" src="@/assets/Day1/sounds/boom.wav"></audio>
-    <button @click="test">test</button>
-  </div>
-</template>
 <script>
 export default {
   data() {
     return {
-      actCurr: "",
-      sound: [
+      activeKeyCode: "",
+      drumSound: [
         {
+          keyCode: 65,
           key: "a",
-          audio: require("@/assets/Day1/pianoC.mp3"),
+          title: "boom",
+          audio: require("@/assets/Day1/drum/boom.wav"),
         },
 
         {
-          key: 10,
-          audio: require("@/assets/Day1/pianoD.mp3"),
-        },
-        {
-          key: 10,
-          audio: require("@/assets/Day1/pianoE.mp3"),
-        },
-        {
-          key: 10,
-          audio: require("@/assets/Day1/pianoF.mp3"),
-        },
-        {
-          key: 10,
-          audio: require("@/assets/Day1/pianoG.mp3"),
-        },
-        {
-          key: 10,
-          audio: require("@/assets/Day1/pianoA.mp3"),
-        },
-        {
-          key: 10,
-          audio: require("@/assets/Day1/pianoB.mp3"),
-        },
-      ],
+          keyCode: 83,
+          title: "clap",
+          key: "s",
 
-      drum: [
-        { label: "Clap", key: "A", small: "a" },
-        { label: "Hihat", key: "S", small: "s" },
-        { label: "Kick", key: "D", small: "d" },
-        { label: "Openhat", key: "F", small: "f" },
-        { label: "Boom", key: "J", small: "j" },
-        { label: "Ride", key: "K", small: "k" },
-        { label: "Snare", key: "L", small: "l" },
-        { label: "Tom", key: "G", small: "g" },
-        { label: "Tink", key: "H", small: "h" },
+          audio: require("@/assets/Day1/drum/clap.wav"),
+        },
+        {
+          keyCode: 68,
+          title: "hihat",
+          key: "d",
+          audio: require("@/assets/Day1/drum/hihat.wav"),
+        },
+        {
+          keyCode: 70,
+          title: "kick",
+          key: "f",
+          audio: require("@/assets/Day1/drum/kick.wav"),
+        },
+        {
+          keyCode: 71,
+          title: "openhat",
+          key: "j",
+          audio: require("@/assets/Day1/drum/openhat.wav"),
+        },
+        {
+          keyCode: 72,
+          title: "ride",
+          key: "k",
+          audio: require("@/assets/Day1/drum/ride.wav"),
+        },
+        {
+          keyCode: 74,
+          title: "snare",
+          key: "l",
+          audio: require("@/assets/Day1/drum/snare.wav"),
+        },
+        {
+          keyCode: 75,
+          title: "tink",
+          key: "g",
+          audio: require("@/assets/Day1/drum/tink.wav"),
+        },
+        {
+          keyCode: 76,
+          title: "tom",
+          key: "h",
+          audio: require("@/assets/Day1/drum/tom.wav"),
+        },
       ],
     };
   },
   methods: {
-    test() {
-      console.log(document.getElementById("test"));
-      const dom = document.getElementById("test");
-      dom.currentTime = 0; // 可以連打用
-      dom.play();
-    },
-    playSound(item) {
-      console.log(item);
-      // this.actCurr = e.key;
-      // console.log(e.key);
-      // console.log(this.actCurr);
-      let test = document.getElementById("test1");
-
-      test.play();
-    },
-    closeSound() {
-      this.actCurr = "";
+    playSound($event) {
+      const dom = document.querySelector(`audio[data-key="${$event.keyCode}"]`);
+      const keyCodeArr = this.drumSound.map((drumItem) => {
+        return drumItem.keyCode;
+      });
+      if (keyCodeArr.includes($event.keyCode)) {
+        dom.currentTime = 0; // 可以連打用
+        this.activeKeyCode = $event.key;
+        dom.play();
+      }
     },
   },
   mounted() {
-    // let all = document.querySelectorAll(".box");
-    // console.log(all);
     window.addEventListener("keydown", this.playSound);
-    window.addEventListener("keyup", this.closeSound);
+  },
+  destroyed() {
+    window.removeEventListener("keydown", this.playSound);
   },
 };
 </script>
+<template>
+  <div class="day1">
+    <!-- <p :style="{ color: '#fff' }">{{ activeKeyCode }}</p> -->
+    <div v-for="item in drumSound" :key="item.key" :class="['box', { active: activeKeyCode == item.key.toUpperCase() }]" :data-key="item.key">
+      <h1>{{ item.key.toUpperCase() }}</h1>
+      <p>{{ item.title }}</p>
+    </div>
+    <audio v-for="(drumItem, idx) in drumSound" :key="idx" :data-key="drumItem.keyCode" :src="drumItem.audio"></audio>
+  </div>
+</template>
+
 <style scoped>
 .day1 {
   display: flex;

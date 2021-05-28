@@ -7,11 +7,11 @@
       <div class="hr"></div>
     </div>
     <div class="clock-number">
-      <v-btn color="primary">{{ hour }}</v-btn>
+      <p color="primary">{{ hour }}</p>
       <span>:</span>
-      <v-btn color="primary">{{ minute }}</v-btn>
+      <p color="primary">{{ minute }}</p>
       <span>:</span>
-      <v-btn color="primary">{{ seconed }}</v-btn>
+      <p color="primary">{{ seconed }}</p>
     </div>
   </div>
 </template>
@@ -63,7 +63,6 @@ export default {
 </script>
 <style scoped>
 * {
-  /* border: 1px solid; */
   position: relative;
 }
 .day2 {
@@ -101,9 +100,6 @@ export default {
 .min,
 .hr {
   width: 5px;
-  /* height: 10px; */
-  /* height: 45%; */
-  /* border: 1px solid; */
   box-shadow: 0 0 5px gray;
   background-color: black;
   position: absolute;

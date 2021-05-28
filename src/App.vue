@@ -1,14 +1,14 @@
 <template>
-  <v-app>
+  <div>
     <div class="layout">
       <div class="menu">
         <div v-for="(item, idx) in 30" @click="pathTo(item)" class="item-day" :key="idx">{{ `JS第一${item}天` }}</div>
       </div>
-      <div style="width:100%">
+      <div style="width:100%" class="content">
         <router-view></router-view>
       </div>
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -41,6 +41,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
+.layout {
+  display: flex;
+}
+.content {
+  flex: 1;
 }
 .menu {
   width: 300px;
